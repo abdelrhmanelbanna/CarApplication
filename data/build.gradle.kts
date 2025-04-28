@@ -1,25 +1,20 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id ("kotlin-kapt")
-    id("org.jetbrains.kotlin.kapt")
-    id ("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
     id("kotlin-parcelize")
-
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.example.carapplication"
-    compileSdk = 35
+    namespace = "com.example.data"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.carapplication"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -38,25 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    buildFeatures {
-        viewBinding = true
-        dataBinding = true
-    }
-}
-
-
-
-kapt {
-    correctErrorTypes = true
 }
 
 dependencies {
 
 
     implementation ("com.google.dagger:hilt-android:2.51.1")
-    implementation(project(":data"))
-    implementation(project(":domain"))
     kapt ("com.google.dagger:hilt-compiler:2.51.1")
 
 
@@ -64,18 +46,10 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
-    implementation("androidx.fragment:fragment-ktx:1.8.6")
-
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+    implementation(project(":domain"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
