@@ -24,7 +24,7 @@ data class ModelsDto(
 	val hiddenPrice: Int? = null,
 
 	@field:SerializedName("least_deposit")
-	val leastDeposit: Int? = null,
+	val leastDeposit: Double? = null,
 
 	@field:SerializedName("attributes_hint_list")
 	val attributesHintList: List<AttributesHintListItem?>? = null,

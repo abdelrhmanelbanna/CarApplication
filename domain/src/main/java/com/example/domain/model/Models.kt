@@ -15,7 +15,7 @@ data class Models(
 	val parentBrandImage: String? = null,
 	val parentBrand: String? = null,
 	val hiddenPrice: Int? = null,
-	val leastDeposit: Int? = null,
+	val leastDeposit: Double? = null,
 	val attributesHintList: List<AttributesHintListItem?>? = null,
 	val leastInstallment: Int? = null,
 	val price: Int? = null,

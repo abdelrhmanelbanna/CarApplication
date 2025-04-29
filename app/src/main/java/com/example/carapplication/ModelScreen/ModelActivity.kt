@@ -25,6 +25,8 @@ class ModelActivity : AppCompatActivity() {
         //  viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_brand)
         viewBinding = DataBindingUtil.setContentView(this,R.layout.activity_model)
 
+        val brandId = intent.getIntExtra("brand_id", -1)
+
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -40,6 +42,6 @@ class ModelActivity : AppCompatActivity() {
 
         viewBinding.recyclerView.adapter = adapter
 
-        viewModel.getModels(32)
+        viewModel.getModels(brandId)
     }
 }

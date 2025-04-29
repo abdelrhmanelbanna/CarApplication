@@ -49,6 +49,9 @@ class BrandActivity : AppCompatActivity() {
 
                 // nav to Model Screen
                 val intent = Intent(this@BrandActivity,ModelActivity::class.java)
+
+                intent.putExtra("brand_id", item?.id)
+
                 startActivity(intent)
             }
 
