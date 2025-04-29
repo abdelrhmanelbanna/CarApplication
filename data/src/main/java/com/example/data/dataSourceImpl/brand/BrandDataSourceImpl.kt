@@ -1,8 +1,7 @@
-package com.example.data.dataSourceImpl
+package com.example.data.dataSourceImpl.brand
 
 import com.example.data.api.WebServices
 import com.example.data.dataSource.BrandDataSource
-import com.example.data.model.brand.BrandDto
 import com.example.domain.model.Brand
 import javax.inject.Inject
 

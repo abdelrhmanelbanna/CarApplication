@@ -1,4 +1,4 @@
-package com.example.data.dataSourceImpl
+package com.example.data.dataSourceImpl.brand
 
 import com.example.data.dataSource.BrandDataSource
 import dagger.Binds

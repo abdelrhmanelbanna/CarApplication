@@ -1,6 +1,7 @@
 package com.example.carapplication.BrandScreen
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +10,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.example.carapplication.ModelScreen.ModelActivity
 import com.example.carapplication.R
 import com.example.carapplication.databinding.ActivityBrandBinding
+import com.example.domain.model.Brand
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +25,7 @@ class BrandActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         viewModel = ViewModelProvider(this).get(BrandsViewModel::class)
 
@@ -40,7 +44,19 @@ class BrandActivity : AppCompatActivity() {
             adapter.changeData(brandsResponse)
         })
 
+        adapter.onItemClickListener = object : BrandAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int, item: Brand?) {
+
+                // nav to Model Screen
+                val intent = Intent(this@BrandActivity,ModelActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
+
         viewDataBinding.recyclerView.adapter = adapter
+
+
 
 
     }

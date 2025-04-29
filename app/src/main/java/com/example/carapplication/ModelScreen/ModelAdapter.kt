@@ -1,4 +1,4 @@
-package com.example.carapplication.BrandScreen
+package com.example.carapplication.ModelScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,15 +6,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carapplication.R
 import com.example.carapplication.databinding.ItemBrandsBinding
+import com.example.carapplication.databinding.ItemModelGrideBinding
+import com.example.carapplication.databinding.ItemModelListBinding
 import com.example.domain.model.Brand
+import com.example.domain.model.Models
 
-class BrandAdapter(var items:List<Brand?>?=null)
-    :RecyclerView.Adapter<BrandAdapter.ViewHolder>() {
+class ModelAdapter(var items:List<Models?>?=null)
+    :RecyclerView.Adapter<ModelAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val viewBinding  : ItemBrandsBinding = DataBindingUtil.inflate(
+
+        val viewBinding:ItemModelGrideBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_brands,parent,false)
+            R.layout.item_model_gride,parent,false)
 
         return ViewHolder(viewBinding)
     }
@@ -25,31 +29,24 @@ class BrandAdapter(var items:List<Brand?>?=null)
 
         holder.bind(item)
 
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(position,item)
-        }
     }
 
-    var onItemClickListener :OnItemClickListener?=null
-    interface OnItemClickListener {
-        fun onItemClick(position: Int , item:Brand?)
-    }
 
     override fun getItemCount(): Int {
         return items?.size?:0
     }
 
-    fun changeData(brandsResponse: List<Brand?>?){
+    fun changeData(modelsResponse: List<Models?>?){
 
-        items = brandsResponse
+        items = modelsResponse
         notifyDataSetChanged()
     }
 
 
-    class ViewHolder(val itemBinding :ItemBrandsBinding)
+    class ViewHolder(val itemBinding :ItemModelGrideBinding)
         :RecyclerView.ViewHolder(itemBinding.root){
 
-            fun bind(item:Brand?){
+            fun bind(item:Models?){
                 itemBinding.binding = item
                 itemBinding.invalidateAll()
             }
