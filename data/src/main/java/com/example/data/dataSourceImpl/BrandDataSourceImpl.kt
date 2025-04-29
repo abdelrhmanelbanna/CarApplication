@@ -11,9 +11,16 @@ class BrandDataSourceImpl @Inject constructor(
 ) : BrandDataSource{
 
     override suspend fun getBrands(category: Int): List<Brand?>? {
-        val response = webServices.getBrands(category)
-        return  response.data?.map {
-            it?.toBrand()
+
+        try {
+            val response = webServices.getBrands(category)
+            return  response.data?.map {
+                it?.toBrand()
+            }
         }
+        catch (ex:Exception){
+            throw ex
+        }
+
     }
 }

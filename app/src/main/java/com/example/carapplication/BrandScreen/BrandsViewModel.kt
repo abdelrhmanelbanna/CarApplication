@@ -19,8 +19,14 @@ class BrandsViewModel @Inject constructor(
    fun getBrands(){
 
        viewModelScope.launch {
-         val result =  brandsUseCase.invoke()
-           brandsLiveData.postValue(result)
+           try{
+               val result =  brandsUseCase.invoke()
+               brandsLiveData.postValue(result)
+           }
+           catch(ex:Exception){
+               throw ex
+           }
+
        }
 
     }
