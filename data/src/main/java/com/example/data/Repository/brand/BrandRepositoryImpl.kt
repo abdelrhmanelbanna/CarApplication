@@ -9,8 +9,6 @@ class BrandRepositoryImpl @Inject constructor(
   val dataSource: BrandDataSource
 ) : BrandsRepository {
 
-    override suspend fun getBrands(category: Int): List<Brand?>? {
-       val response =  dataSource.getBrands(category)
-        return response
-    }
+    override suspend fun getBrands(category: Int): List<Brand>? = dataSource.getBrands(category)
+
 }

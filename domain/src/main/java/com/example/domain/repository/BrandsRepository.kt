@@ -4,6 +4,6 @@ import com.example.domain.model.Brand
 
 interface BrandsRepository {
 
-    suspend fun getBrands(category:Int):List<Brand?>?
+    suspend fun getBrands(category:Int):List<Brand>?
 
 }

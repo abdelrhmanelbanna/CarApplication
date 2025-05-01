@@ -16,39 +16,26 @@
         android:padding="16sp">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/background_rounded"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ic_filter"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="@android:color/darker_gray"
             app:layout_constraintTop_toTopOf="parent"
-            android:paddingVertical="14dp"
-            android:layout_marginEnd="14dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ic_filter">
 
-            <ImageView
-                android:id="@+id/ic_search"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search"
-                android:layout_marginStart="14dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:hint="Search brand"
+                android:inputType="text"
+                android:background="@android:color/transparent" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search Brands"
-                android:textColor="@color/gray"
-                app:layout_constraintStart_toEndOf="@id/ic_search"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginStart="10dp"
-                android:textSize="16sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/ic_filter"

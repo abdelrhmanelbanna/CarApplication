@@ -21,9 +21,6 @@ object ApiModule {
         return GsonConverterFactory.create()
     }
 
-
-
-
     @Provides
     fun provideHttpLoggingInterceptor():HttpLoggingInterceptor{
         val logging = HttpLoggingInterceptor { message ->

@@ -8,7 +8,7 @@ class GetBrandsUseCase @Inject constructor (
     private val repository: BrandsRepository
 ){
 
-    suspend fun invoke():List<Brand?>?{
+    suspend fun invoke():List<Brand>?{
        return repository.getBrands(3)
     }
 }

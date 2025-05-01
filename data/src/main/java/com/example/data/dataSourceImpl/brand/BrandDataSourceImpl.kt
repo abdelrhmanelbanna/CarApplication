@@ -6,18 +6,17 @@ import com.example.domain.model.Brand
 import javax.inject.Inject
 
 class BrandDataSourceImpl @Inject constructor(
-    val webServices: WebServices
-) : BrandDataSource{
+    private val webServices: WebServices
+) : BrandDataSource {
 
-    override suspend fun getBrands(category: Int): List<Brand?>? {
+    override suspend fun getBrands(category: Int): List<Brand>? {
 
         try {
             val response = webServices.getBrands(category)
-            return  response.data?.map {
-                it?.toBrand()
+            return response.data?.map {
+                it.toBrand()
             }
-        }
-        catch (ex:Exception){
+        } catch (ex: Exception) {
             throw ex
         }
 

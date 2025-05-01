@@ -17,9 +17,9 @@ data class BrandDto(
 	fun toBrand (): Brand {
 
 		return Brand(
-			id = id,
-			name = name,
-			image = image
+			id = id ?: 0,
+			name = name ?: "",
+			image = image ?: ""
 		)
 	}
 }

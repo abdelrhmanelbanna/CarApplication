@@ -1,14 +1,5 @@
 package com.example.domain.model
 
-
-
-data class AdsItem(
-	val image: String? = null,
-	val id: Int? = null,
-	val position: Int? = null,
-	val url: String? = null
-)
-
 data class Models(
 	val image: String? = null,
 	val identificationAttributeValueId: Int? = null,

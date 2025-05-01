@@ -19,8 +19,7 @@ class GenerationActivity : AppCompatActivity() {
 
     val viewModel: GenerationViewModel by viewModels()
 
-    lateinit var binding : ActivityGenerationBinding
-
+    lateinit var binding: ActivityGenerationBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +37,11 @@ class GenerationActivity : AppCompatActivity() {
             insets
         }
 
-       val attribute_id= intent.getIntExtra("attribute_id",-1)
-        val vehicle_id=  intent.getIntExtra("vehicle_id",-1)
-        val attribute_value_id=intent.getIntExtra("attribute_value_id",-1)
+        val attribute_id = intent.getIntExtra("attribute_id", -1)
+        val vehicle_id = intent.getIntExtra("vehicle_id", -1)
+        val attribute_value_id = intent.getIntExtra("attribute_value_id", -1)
 
-        viewModel.getVehicle(attribute_id,vehicle_id,attribute_value_id)
+        viewModel.getVehicle(attribute_id, vehicle_id, attribute_value_id)
         val adapter = VehicleAdapter()
 
         viewModel.vehicleLiveData.observe(this) { vehicleList ->
@@ -60,7 +59,7 @@ class GenerationActivity : AppCompatActivity() {
 
 
         var isFavorite = false
-        binding.icFavourite.setOnClickListener{
+        binding.icFavourite.setOnClickListener {
 
             isFavorite = !isFavorite
 
@@ -73,7 +72,7 @@ class GenerationActivity : AppCompatActivity() {
         }
 
         var isCompare = false
-        binding.icCompare.setOnClickListener{
+        binding.icCompare.setOnClickListener {
             isCompare = !isCompare
 
             val tintColor = if (isCompare) {
@@ -86,16 +85,14 @@ class GenerationActivity : AppCompatActivity() {
         }
 
 
-        adapter.onDifferenceClickListener = object :VehicleAdapter.OnDifferenceClickListener{
+        adapter.onDifferenceClickListener = object : VehicleAdapter.OnDifferenceClickListener {
             override fun onDifferenceClick(pos: Int, item: Vehicle?) {
 
             }
         }
 
 
-
     }
-
 
 
 }

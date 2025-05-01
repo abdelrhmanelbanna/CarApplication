@@ -1,6 +1,5 @@
 package com.example.data.dataSource
 
-import com.example.data.model.models.ModelsDto
 import com.example.domain.model.Models
 
 interface ModelsDataSource {

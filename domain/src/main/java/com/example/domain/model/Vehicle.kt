@@ -23,6 +23,5 @@ data class Vehicle(
 	val model: String? = null,
 	val id: Int? = null,
 	val brand: String? = null,
-	val hasSeller: Boolean? = null,
 	val extraAttributes: List<String?>? = null
 ) : Parcelable

@@ -1,6 +1,5 @@
 package com.example.domain.usecases
 
-import com.example.domain.model.Brand
 import com.example.domain.model.Models
 import com.example.domain.repository.ModelsRepository
 import javax.inject.Inject

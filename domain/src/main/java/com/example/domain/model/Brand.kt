@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 @Parcelize
 data class Brand(
-	val image: String? = null,
-	val name: String? = null,
-	val id: Int? = null
+	val image: String = "",
+	val name: String = "",
+	val id: Int = 0
 ) : Parcelable

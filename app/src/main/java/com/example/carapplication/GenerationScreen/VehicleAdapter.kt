@@ -5,11 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carapplication.BrandScreen.BrandAdapter.ViewHolder
 import com.example.carapplication.R
-import com.example.carapplication.databinding.ItemBrandsBinding
 import com.example.carapplication.databinding.ItemVehicleBinding
-import com.example.domain.model.Brand
 import com.example.domain.model.Vehicle
 
 class VehicleAdapter (var items:List<Vehicle?>?=null)
