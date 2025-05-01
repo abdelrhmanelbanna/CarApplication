@@ -2,6 +2,7 @@ package com.example.carapplication.GenerationScreen
 
 import android.view.LayoutInflater
 import android.view.View
+import android.content.Context
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,8 @@ class VehicleAdapter (var items:List<Vehicle?>?=null)
     : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
 
     private val clickedItems = mutableSetOf<Int>()
+    private var selectedFavouritePosition: Int? = null
+    private var selectedComparePosition: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -25,19 +28,16 @@ class VehicleAdapter (var items:List<Vehicle?>?=null)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items?.get(position)
-
         holder.bind(item)
 
+        val context = holder.itemView.context
+
         val differenceAdapter = DifferenceAdapter()
-
         differenceAdapter.changeData(item?.extraAttributes)
-
         holder.itemBinding.differenceRecyclerView.adapter = differenceAdapter
 
         val isClicked = clickedItems.contains(position)
 
-        // Toggle color and arrow based on click state
-        val context = holder.itemView.context
         val iconColor = if (isClicked) R.color.primary else R.color.gray
         holder.itemBinding.icDifferent.setColorFilter(context.getColor(iconColor))
         holder.itemBinding.differenceTv.setTextColor(context.getColor(iconColor))
@@ -51,8 +51,6 @@ class VehicleAdapter (var items:List<Vehicle?>?=null)
 
         holder.itemBinding.differenceComponent.setOnClickListener {
             onDifferenceClickListener?.onDifferenceClick(position, item)
-
-            // Toggle clicked state
             if (clickedItems.contains(position)) {
                 clickedItems.remove(position)
             } else {
@@ -61,7 +59,39 @@ class VehicleAdapter (var items:List<Vehicle?>?=null)
             notifyItemChanged(position)
         }
 
+        // Favourite icon
+        val favColor = if (selectedFavouritePosition == position) R.color.primary else R.color.gray
+        holder.itemBinding.icFavourite.setColorFilter(context.getColor(favColor))
 
+        // Compare icon
+        val compareColor = if (selectedComparePosition == position) R.color.primary else R.color.gray
+        holder.itemBinding.icCompare.setColorFilter(context.getColor(compareColor))
+
+        holder.itemBinding.icFavourite.setOnClickListener {
+            val prevSelected = selectedFavouritePosition
+            selectedFavouritePosition = if (selectedFavouritePosition == position) null else position
+            notifyItemChanged(prevSelected ?: -1)
+            notifyItemChanged(position)
+            onFavouriteClickListener?.onFavouriteClick(position, item)
+        }
+
+        holder.itemBinding.icCompare.setOnClickListener {
+            val prevSelected = selectedComparePosition
+            selectedComparePosition = if (selectedComparePosition == position) null else position
+            notifyItemChanged(prevSelected ?: -1)
+            notifyItemChanged(position)
+            onCompareClickListener?.onCompareClick(position, item)
+        }
+    }
+
+    var onFavouriteClickListener:OnFavouriteClickListener?=null
+    interface OnFavouriteClickListener{
+        fun onFavouriteClick(pos:Int , item: Vehicle?)
+    }
+
+    var onCompareClickListener:OnCompareClickListener?=null
+    interface OnCompareClickListener{
+        fun onCompareClick(pos:Int , item: Vehicle?)
     }
 
     var onDifferenceClickListener :OnDifferenceClickListener?=null

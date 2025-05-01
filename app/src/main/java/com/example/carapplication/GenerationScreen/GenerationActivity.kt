@@ -91,11 +91,11 @@ class GenerationActivity : AppCompatActivity() {
         }
 
 
-        adapter.onDifferenceClickListener = object : VehicleAdapter.OnDifferenceClickListener {
-            override fun onDifferenceClick(pos: Int, item: Vehicle?) {
-
-            }
-        }
+//        adapter.onDifferenceClickListener = object : VehicleAdapter.OnDifferenceClickListener {
+//            override fun onDifferenceClick(pos: Int, item: Vehicle?) {
+//
+//            }
+//        }
 
         navigateToHome()
 
