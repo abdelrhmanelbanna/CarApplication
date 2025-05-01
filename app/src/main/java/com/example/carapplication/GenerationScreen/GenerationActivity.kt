@@ -56,6 +56,31 @@ class GenerationActivity : AppCompatActivity() {
         binding.recycleView.adapter = adapter
 
 
+        var isFavorite = false
+        binding.icFavourite.setOnClickListener{
+
+            isFavorite = !isFavorite
+
+            val tintColor = if (isFavorite) {
+                getColor(R.color.primary)
+            } else {
+                getColor(R.color.gray)
+            }
+            binding.icFavourite.setColorFilter(tintColor)
+        }
+
+        var isCompare = false
+        binding.icCompare.setOnClickListener{
+            isCompare = !isCompare
+
+            val tintColor = if (isCompare) {
+                getColor(R.color.primary)
+            } else {
+                getColor(R.color.gray)
+            }
+
+            binding.icCompare.setColorFilter(tintColor)
+        }
 
 
 
