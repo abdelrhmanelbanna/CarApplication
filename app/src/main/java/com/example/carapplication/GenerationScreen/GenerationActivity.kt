@@ -1,5 +1,6 @@
 package com.example.carapplication.GenerationScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,8 @@ import com.example.carapplication.databinding.ActivityGenerationBinding
 import com.example.domain.model.Vehicle
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
+import com.example.carapplication.BrandScreen.BrandActivity
+import com.example.carapplication.ModelScreen.ModelActivity
 
 
 @AndroidEntryPoint
@@ -40,6 +43,9 @@ class GenerationActivity : AppCompatActivity() {
         val attribute_id = intent.getIntExtra("attribute_id", -1)
         val vehicle_id = intent.getIntExtra("vehicle_id", -1)
         val attribute_value_id = intent.getIntExtra("attribute_value_id", -1)
+
+        val brandImage= intent.getStringExtra("brand_image")
+        binding.imageBind = brandImage
 
         viewModel.getVehicle(attribute_id, vehicle_id, attribute_value_id)
         val adapter = VehicleAdapter()
@@ -91,7 +97,15 @@ class GenerationActivity : AppCompatActivity() {
             }
         }
 
+        navigateToHome()
 
+    }
+
+    private fun navigateToHome() {
+        binding.icBack.setOnClickListener{
+            val intent = Intent(this, ModelActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

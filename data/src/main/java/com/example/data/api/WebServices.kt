@@ -17,6 +17,7 @@ interface WebServices {
     suspend fun getModels(
         @Query("brand") brandId: Int,
         @Query("page") page: Int = 1,
+        @Query("page_size") pageSize: Int = 20,
         @Query("category") category: Int = 3
     ): ModelsResponse
 

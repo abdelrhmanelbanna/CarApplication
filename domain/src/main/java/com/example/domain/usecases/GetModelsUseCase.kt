@@ -8,8 +8,8 @@ class GetModelsUseCase @Inject constructor(
   private val repository: ModelsRepository
    ) {
 
-    suspend fun invoke(brandId:Int):List<Models?>?{
-        return repository.getModels(brandId)
+    suspend operator fun invoke(brandId: Int, page: Int = 1, pageSize: Int = 20): List<Models> {
+        return repository.getModels(brandId, page, pageSize)
     }
 
 }

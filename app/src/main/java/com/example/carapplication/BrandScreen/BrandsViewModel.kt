@@ -1,5 +1,6 @@
 package com.example.carapplication.BrandScreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,34 +16,40 @@ class BrandsViewModel @Inject constructor(
     private val brandsUseCase: GetBrandsUseCase
 ) : ViewModel() {
 
-    private val _brandsLiveData = MutableLiveData<List<Brand>>()
-    val brandsLiveData: LiveData<List<Brand>> get() = _brandsLiveData
+    private val _brandsState = MutableLiveData<BrandState>()
+    val brandsState: LiveData<BrandState> = _brandsState
     private var fullBrandList: List<Brand> = emptyList()
 
-    fun getBrands() {
+    fun getBrands(category: Int = 1) {
+        Log.d("BrandsViewModel", "Starting getBrands for category: $category")
+        _brandsState.postValue(BrandState.Loading)
         viewModelScope.launch {
             try {
-                viewModelScope.launch {
-                    val brands = brandsUseCase.invoke() // Assuming this fetches brands
-                    brands?.let {
-                        fullBrandList = it
-                        _brandsLiveData.postValue(it)
-                    }
-                }
-            } catch (ex: Exception) {
-
+                val brands = brandsUseCase.invoke() ?: emptyList()
+                Log.d("BrandsViewModel", "Received brands: $brands")
+                fullBrandList = brands
+                _brandsState.postValue(BrandState.Success(brands))
+            } catch (e: Exception) {
+                Log.e("BrandsViewModel", "Error fetching brands", e)
+                _brandsState.postValue(BrandState.Error(e.message ?: "Failed to load brands"))
             }
         }
     }
     fun filterBrands(query: String) {
+        Log.d("BrandsViewModel", "Filtering brands with query: $query")
         if (query.isEmpty()) {
-            _brandsLiveData.postValue(fullBrandList)
+            _brandsState.postValue(BrandState.Success(fullBrandList))
         } else {
             val filteredList = fullBrandList.filter {
                 it.name.contains(query, ignoreCase = true)
             }
-            _brandsLiveData.postValue(filteredList)
+            _brandsState.postValue(BrandState.Success(filteredList))
         }
     }
 
+}
+sealed class BrandState {
+    object Loading : BrandState()
+    data class Success(val brands: List<Brand>) : BrandState()
+    data class Error(val message: String) : BrandState()
 }

@@ -12,38 +12,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/background_rounded"
-        android:paddingVertical="16dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        >
-
+        android:background="@drawable/background_rounded"
+        android:paddingVertical="16dp">
 
         <ImageView
             android:id="@+id/icon_brand"
+            imageUrl="@{binding.image}"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            tools:src="@drawable/ic_brand"
-            imageUrl="@{binding.image}"
+            android:layout_marginHorizontal="8dp"
             android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginHorizontal="8dp" />
+            tools:src="@drawable/ic_brand" />
 
         <TextView
             android:id="@+id/title_brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Volkswagen"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:padding="4dp"
             android:text="@{binding.name}"
             android:textColor="#000000"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/icon_brand" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_brand"
+            tools:text="Volkswagen" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
