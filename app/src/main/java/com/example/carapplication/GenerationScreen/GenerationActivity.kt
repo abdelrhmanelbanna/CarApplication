@@ -11,11 +11,13 @@ import com.example.carapplication.R
 import com.example.carapplication.databinding.ActivityGenerationBinding
 import com.example.domain.model.Vehicle
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
+
 
 @AndroidEntryPoint
 class GenerationActivity : AppCompatActivity() {
 
-    lateinit var viewModel : GenerationViewModel
+    val viewModel: GenerationViewModel by viewModels()
 
     lateinit var binding : ActivityGenerationBinding
 
@@ -24,7 +26,7 @@ class GenerationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel =ViewModelProvider(this).get(GenerationViewModel::class)
+//        viewModel =ViewModelProvider(this).get(GenerationViewModel::class)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_generation)
 
@@ -36,7 +38,11 @@ class GenerationActivity : AppCompatActivity() {
             insets
         }
 
-        viewModel.getVehicle(195,180,2916)
+       val attribute_id= intent.getIntExtra("attribute_id",-1)
+        val vehicle_id=  intent.getIntExtra("vehicle_id",-1)
+        val attribute_value_id=intent.getIntExtra("attribute_value_id",-1)
+
+        viewModel.getVehicle(attribute_id,vehicle_id,attribute_value_id)
         val adapter = VehicleAdapter()
 
         viewModel.vehicleLiveData.observe(this) { vehicleList ->
@@ -44,6 +50,7 @@ class GenerationActivity : AppCompatActivity() {
             val vehiclesAdapter = vehicleList?.drop(1)
             adapter.changeData(vehiclesAdapter)
             binding.binding = firstVehicle
+
         }
 
         binding.recycleView.adapter = adapter

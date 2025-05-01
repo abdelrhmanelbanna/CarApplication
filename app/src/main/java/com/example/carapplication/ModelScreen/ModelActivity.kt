@@ -1,5 +1,6 @@
 package com.example.carapplication.ModelScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carapplication.BrandScreen.BrandAdapter
+import com.example.carapplication.GenerationScreen.GenerationActivity
 import com.example.carapplication.R
 import com.example.carapplication.databinding.ActivityModelBinding
+import com.example.domain.model.Brand
+import com.example.domain.model.Models
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,5 +69,20 @@ class ModelActivity : AppCompatActivity() {
         }
 
         viewModel.getModels(brandId)
+
+        adapter.onItemClickListener = object : ModelAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int, item: Models?) {
+
+                val intent = Intent(this@ModelActivity,GenerationActivity::class.java)
+
+                intent.putExtra("attribute_id", item?.identificationAttributeId)
+                intent.putExtra("vehicle_id", item?.vehicleId)
+                intent.putExtra("attribute_value_id", item?.identificationAttributeValueId)
+
+                startActivity(intent)
+
+            }
+        }
+
     }
 }

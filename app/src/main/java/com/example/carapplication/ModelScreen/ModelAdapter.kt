@@ -59,9 +59,16 @@ class ModelAdapter(
             is GridViewHolder -> holder.bind(item)
             is ListViewHolder -> holder.bind(item)
         }
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(position,item)
+        }
     }
 
-
+    var onItemClickListener :OnItemClickListener?=null
+    interface OnItemClickListener {
+        fun onItemClick(position: Int , item:Models?)
+    }
 
     fun changeData(modelsResponse: List<Models?>?) {
         items = modelsResponse
