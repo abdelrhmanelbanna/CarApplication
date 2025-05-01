@@ -20,7 +20,7 @@ interface WebServices {
         @Query("category") category: Int = 3
     ): ModelsResponse
 
-    @GET("models")
+    @GET("vehicles")
     suspend fun getVehicles(
         @Query("identification_attribute_id") attributeId: Int,
         @Query("category") category: Int = 3,

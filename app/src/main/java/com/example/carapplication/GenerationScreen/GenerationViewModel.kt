@@ -19,6 +19,7 @@ class GenerationViewModel @Inject constructor(
         attributeId: Int,
         vehicleId: Int,
         attributeValueId: Int){
+
         viewModelScope.launch {
             val result =  useCase.invoke(attributeId,vehicleId,attributeValueId)
             vehicleLiveData.postValue(result)
