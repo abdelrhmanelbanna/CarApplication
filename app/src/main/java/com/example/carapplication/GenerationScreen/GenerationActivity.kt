@@ -48,6 +48,9 @@ class GenerationActivity : AppCompatActivity() {
         viewModel.vehicleLiveData.observe(this) { vehicleList ->
             val firstVehicle = vehicleList?.first()
             val vehiclesAdapter = vehicleList?.drop(1)
+
+//            val differenceList = vehicleList?.get(0)?.extraAttributes
+
             adapter.changeData(vehiclesAdapter)
             binding.binding = firstVehicle
 
@@ -80,6 +83,13 @@ class GenerationActivity : AppCompatActivity() {
             }
 
             binding.icCompare.setColorFilter(tintColor)
+        }
+
+
+        adapter.onDifferenceClickListener = object :VehicleAdapter.OnDifferenceClickListener{
+            override fun onDifferenceClick(pos: Int, item: Vehicle?) {
+
+            }
         }
 
 

@@ -8,6 +8,10 @@
             name="binding"
             type="com.example.domain.model.Vehicle" />
 
+        <variable
+            name="isExpanded"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,6 +59,56 @@
             android:layout_marginHorizontal="18dp"
             />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/difference_component"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            android:layout_marginTop="14dp"
+            >
+            <ImageView
+                android:id="@+id/ic_different"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_difference"
+                />
+            <TextView
+                android:id="@+id/difference_Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/ic_different"
+                app:layout_constraintTop_toTopOf="@id/ic_different"
+                app:layout_constraintBottom_toBottomOf="@id/ic_different"
+                tools:text="8 Differences"
+                android:text='@{binding.extraAttributes != null ? binding.extraAttributes.size() + " Differences" : "0 Differences"}'
+                android:layout_marginStart="8dp"
+                />
+            <ImageView
+                android:id="@+id/ic_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_down"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/difference_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/difference_component"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            android:layout_marginTop="14dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
 
 
