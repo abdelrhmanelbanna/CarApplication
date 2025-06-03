@@ -7,13 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.carapplication.R
 import com.example.carapplication.databinding.ActivityGenerationBinding
-import com.example.domain.model.Vehicle
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
-import com.example.carapplication.BrandScreen.BrandActivity
 import com.example.carapplication.ModelScreen.ModelActivity
 
 

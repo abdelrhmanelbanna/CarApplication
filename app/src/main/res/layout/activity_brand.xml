@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/main_background"
         android:padding="16sp"
-        tools:context=".BrandScreen.BrandActivity">
+        tools:context=".brandScreen.BrandActivity">
 
 
         <com.google.android.material.appbar.AppBarLayout

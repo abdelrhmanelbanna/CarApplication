@@ -1,4 +1,4 @@
-package com.example.carapplication.BrandScreen
+package com.example.carapplication.brandScreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

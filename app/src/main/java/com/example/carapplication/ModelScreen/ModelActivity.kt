@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carapplication.BrandScreen.BrandActivity
+import com.example.carapplication.brandScreen.BrandActivity
 import com.example.carapplication.GenerationScreen.GenerationActivity
 import com.example.carapplication.R
 import com.example.carapplication.databinding.ActivityModelBinding

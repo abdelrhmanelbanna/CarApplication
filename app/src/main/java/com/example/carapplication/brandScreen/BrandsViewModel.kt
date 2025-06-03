@@ -1,4 +1,4 @@
-package com.example.carapplication.BrandScreen
+package com.example.carapplication.brandScreen
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BrandsViewModel @Inject constructor(
     private val brandsUseCase: GetBrandsUseCase
-) : ViewModel() {
+) : ViewModel()  {
 
     private val _brandsState = MutableLiveData<BrandState>()
     val brandsState: LiveData<BrandState> = _brandsState
@@ -46,6 +46,8 @@ class BrandsViewModel @Inject constructor(
             _brandsState.postValue(BrandState.Success(filteredList))
         }
     }
+
+
 
 }
 sealed class BrandState {

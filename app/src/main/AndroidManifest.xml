@@ -22,7 +22,7 @@
             android:name=".ModelScreen.ModelActivity"
             android:exported="false" />
         <activity
-            android:name=".BrandScreen.BrandActivity"
+            android:name=".brandScreen.BrandActivity"
             android:exported="true">
 
             <intent-filter>
